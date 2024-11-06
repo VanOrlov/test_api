@@ -7,7 +7,7 @@ function handleWebhook(req, res) {
         exec('git pull && docker stop app && docker rm app && docker build -t app . && docker run -d -p 3000:3000 --name app app', (error, stdout, stderr) => {
             if (error) {
                 console.log(`Ошибка выполнения команды: ${error.message}`);
-                return res.status(500).send('Произошла ошибка при обновлении');
+                return res.status(500).send(error.message);
             }
             if (stderr) {
                 console.log(`stderr: ${stderr}`);
