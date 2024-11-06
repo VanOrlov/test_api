@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const tokenRequired = require('../middleware/tokenRequired');
-const handleWebhook = require('../handlers/webhookHandler')
 const fs = require('fs');
 const path = require('path');
 
