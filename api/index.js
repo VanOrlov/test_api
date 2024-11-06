@@ -27,6 +27,7 @@ app.get('/api/get-ssh-key', (req, res) => {
         res.status(500).send('Не удалось прочитать SSH ключ');
     }
 });
+     
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
