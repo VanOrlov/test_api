@@ -38,12 +38,12 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh -o StrictHostKeyChecking=no root@185.251.90.13 << 'EOF'
-            docker pull orlovanya/my-node-app:latest
-            docker stop app || true
-            docker rm app || true
-            docker run -d -p 3000:3000 --name app orlovanya/my-node-app:latest
-          EOF
+    mkdir -p ~/.ssh
+    printf "%s" "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+    chmod 600 ~/.ssh/id_rsa
+    ssh -o StrictHostKeyChecking=no -T root@185.251.90.13 << 'EOF'
+      docker pull orlovanya/my-node-app:latest
+      docker stop app || true
+      docker rm app || true
+      docker run -d -p 3000:3000 --name app orlovanya/my-node-app:latest
+    EOF
