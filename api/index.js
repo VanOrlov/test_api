@@ -12,7 +12,7 @@ app.use(cors())
 app.post('/api/webhook', handleWebhook)
 
 app.get('/api', tokenRequired, (req, res) => {
-    res.status(200).json({data: 'This is new data after add handler'})
+    res.status(200).json({data: 'This is new data after add handler 2.0'})
 })
 
 app.listen(PORT, () => {
