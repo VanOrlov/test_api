@@ -1,11 +1,15 @@
 const express = require('express');
 const cors = require('cors');
 const tokenRequired = require('../middleware/tokenRequired');
+const handleWebhook = require('../handlers/webhookHandler')
+
 const app = express()
 const PORT = process.env.PORT || 3000
 
 app.use(express.json())
 app.use(cors())
+
+app.post('api/webhook', handleWebhook)
 
 app.get('/api', tokenRequired, (req, res) => {
     res.status(200).json({data: 'This is data'})
