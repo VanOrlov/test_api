@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000
 app.use(express.json())
 app.use(cors())
 
-app.post('api/webhook', handleWebhook)
+app.post('/api/webhook', handleWebhook)
 
 app.get('/api', tokenRequired, (req, res) => {
     res.status(200).json({data: 'This is new data after add handler'})
