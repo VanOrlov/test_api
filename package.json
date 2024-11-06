@@ -1,0 +1,15 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "Test API for education Ubuntu, VDS, API, Docker, middleware and etc.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node api/index.js"
+  },
+  "author": "Orlov Ivan",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.1"
+  }
+}
