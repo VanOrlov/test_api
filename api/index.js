@@ -15,8 +15,6 @@ app.get('/api', tokenRequired, (req, res) => {
 })
 
 
-
-
 app.get('/api/get-ssh-key', (req, res) => {
     try {
         const sshKeyPath = path.join(process.env.HOME, '.ssh', 'id_rsa.pub');
