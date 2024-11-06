@@ -1,0 +1,49 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main  # Запускать при пуше в основную ветку
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Скачиваем репозиторий
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Устанавливаем Docker
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      # Сборка Docker образа
+      - name: Build Docker Image
+        run: docker build -t app .
+
+      # Логинимся в Docker Hub (нужно указать секреты репозитория)
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      # Пушим образ в Docker Hub
+      - name: Push Docker Image
+        run: docker push app
+
+      # Разворачиваем приложение на сервере
+      - name: Deploy to Server
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh -o StrictHostKeyChecking=no user@your-server-ip << 'EOF'
+            docker pull app
+            docker stop app || true
+            docker rm app || true
+            docker run -d -p 3000:3000 --name app app
+          EOF
