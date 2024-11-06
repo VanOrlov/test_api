@@ -26,7 +26,10 @@ app.get('/api/get-ssh-key', (req, res) => {
         res.status(500).send('Не удалось прочитать SSH ключ');
     }
 });
-     
+
+app.get('/api/hello', tokenRequired, (req, res) => {
+    res.status(200).json({data: 'Hello pidor'})
+})
 
 
 app.listen(PORT, () => {
