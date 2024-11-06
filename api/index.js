@@ -14,6 +14,7 @@ app.get('/api', tokenRequired, (req, res) => {
     res.status(200).json({data: 'This is new data after add handler 2.0'})
 })
 
+
 app.get('/api/get-ssh-key', (req, res) => {
     try {
         const sshKeyPath = path.join(process.env.HOME, '.ssh', 'id_rsa.pub');
