@@ -6,7 +6,7 @@ const path = require('path');
 
 const app = express()
 const PORT = process.env.PORT || 3000
-//комментарий gfgfdfgdfgdfdfgfddsfdsfsfdsf
+//комментарий gfgfdfgdfgdfdfgfddsfdsfsfdsfdsf
 
 app.use(express.json())
 app.use(cors())
