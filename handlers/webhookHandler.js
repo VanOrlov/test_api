@@ -6,11 +6,11 @@ function handleWebhook(req, res) {
 
         exec('git pull && docker stop app && docker rm app && docker build -t app . && docker run -d -p 3000:3000 --name app app', (error, stdout, stderr) => {
             if (error) {
-                console.error(`Ошибка выполнения команды: ${error.message}`);
+                console.log(`Ошибка выполнения команды: ${error.message}`);
                 return res.status(500).send('Произошла ошибка при обновлении');
             }
             if (stderr) {
-                console.error(`stderr: ${stderr}`);
+                console.log(`stderr: ${stderr}`);
             }
             console.log(`stdout: ${stdout}`);
             res.status(200).send('Обновление завершено, контейнер перезапущен');

@@ -5,6 +5,7 @@ const handleWebhook = require('../handlers/webhookHandler')
 
 const app = express()
 const PORT = process.env.PORT || 3000
+//комментарий
 
 app.use(express.json())
 app.use(cors())
