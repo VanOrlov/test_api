@@ -27,10 +27,13 @@ app.get('/api/get-ssh-key', (req, res) => {
     }
 });
 
-app.get('/api/hello', tokenRequired, (req, res) => {
+app.get('/api/hello', (req, res) => {
     res.status(200).json({data: 'Hello pidor'})
 })
 
+app.get('/api/asshole', (req, res) =>{
+    res.status(200).json({data: "Настя красава"})
+})
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
